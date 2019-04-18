@@ -1,0 +1,25 @@
+{
+  "name": "punchclock",
+  "version": "1.0.0",
+  "description": "A simple MERN-like application for the course II1302 @ KTH",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anga13/punchclock.git"
+  },
+  "keywords": [
+    "MERN-like",
+    "testing",
+    "KTH",
+    "II1302"
+  ],
+  "author": "anga13, antonkal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anga13/punchclock/issues"
+  },
+  "homepage": "https://github.com/anga13/punchclock#readme"
+}
