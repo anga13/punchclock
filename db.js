@@ -1,11 +1,7 @@
 module.exports = {
-	getEmployees: (cb) => {
-		cb(employees)
-	},
-	getEmployeeById: (id, cb) => {
-		let employee = employees.find((empl) => empl.id == id)
-		cb(employee)
-	},
+	getEmployees: (cb) => { },
+	getEmployeeById: (id, cb) => {},
 	getStampsInInterval: (from, to) => {},
 	getStampsById: (id) => {},
 }
+
