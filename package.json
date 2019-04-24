@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A simple MERN-like application for the course II1302 @ KTH",
   "engines": {
-     "node": "11.14.0",
-     "npm": "6.7.0"
+    "node": "11.14.0",
+    "npm": "6.7.0"
   },
   "main": "index.js",
   "scripts": {
