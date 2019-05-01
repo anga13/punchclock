@@ -1,7 +1,7 @@
 const db={
         getEmployeeTotalsInInterval: (from, to) => {},
 
-        getEmployees: () => { return undefined },
+        getEmployees: () => {},
 
         getEmployeeById: (id) => {
                 const all=db.getEmployees()
@@ -10,7 +10,7 @@ const db={
                 return returned[0]
         },
 
-        getStamps: () => { return undefined; },
+        getStamps: () => {},
 
         getStampsInInterval: (from, to) => {
                 const all=db.getStamps()

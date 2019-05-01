@@ -1,20 +1,27 @@
 const db = require('../../db')
 
+beforeEach(()=>{
+	db.getEmployees=jest.fn(()=>
+	[{id:0, name:"Fred Flintstone"},
+	 {id:1, name:"Barney Rubble"},
+	 {id:2, name:"Mister Kill"},
+	 {id:3, name:"Muscles McBoulder"}])
 
+})
 describe('Employee DAO', () => {
-        db.getEmployees=jest.fn(()=>
-                [{id:0, name:"Fred Flintstone"},
-                 {id:1, name:"Barney Rubble"},
-                 {id:2, name:"Mister Kill"},
-                 {id:3, name:"Muscles McBoulder"}])
-
         test('Returns all instances of employee', ()=>{
+		db.getEmployees=jest.fn(()=>
+			[{id:0, name:"Fred Flintstone"},
+			 {id:1, name:"Barney Rubble"},
+			 {id:2, name:"Mister Kill"},
+			 {id:3, name:"Muscles McBoulder"}])
+
                 const emps=db.getEmployees()
                 expect(emps).toBeDefined()
                 expect(emps).toBeInstanceOf(Array)
         })
 
-        test.each([0,1,2,3])('Returns the instance of employee with the given id', (a)=>{
+        test.each([0,1,2,3])('Returns the instance of employee with id %d', (a)=>{
                 const emp=db.getEmployeeById(a)
                 expect(emp).toBeDefined()
                 expect(emp.id).toBeDefined()
@@ -33,12 +40,12 @@ describe('Timestamp DAO', () => {
                                   {id:2, in:false, time:12},
                                   {id:3, in:true, time:8}])
 
-        test.each([[0,23],[8,11],[4,9]])('Returns all timestamps in the given interval', (a,b)=>{
+        test.each([[0,23],[8,11],[4,9]])('Returns all timestamps in the given interval %d to %d', (a,b)=>{
                 const stamps=db.getStampsInInterval(a,b);
                 expect(stamps).toBeDefined()
                 expect(stamps).toBeInstanceOf(Array)
         })
-        test.each([0,1,2,3])('Returns all timestamps with the given id', (a)=>{
+        test.each([0,1,2,3])('Returns all timestamps with id %d', (a)=>{
                 const stamps=db.getStampsById(a)
                 expect(stamps).toBeDefined()
                 expect(stamps).toBeInstanceOf(Array)
