@@ -1,54 +1,44 @@
 const db = require('../../db')
 
-beforeEach(()=>{
-	db.getEmployees=jest.fn(()=>
-	[{id:0, name:"Fred Flintstone"},
-	 {id:1, name:"Barney Rubble"},
-	 {id:2, name:"Mister Kill"},
-	 {id:3, name:"Muscles McBoulder"}])
+jest.mock('cloudant')
 
-})
 describe('Employee DAO', () => {
-        test('Returns all instances of employee', ()=>{
-		db.getEmployees=jest.fn(()=>
-			[{id:0, name:"Fred Flintstone"},
-			 {id:1, name:"Barney Rubble"},
-			 {id:2, name:"Mister Kill"},
-			 {id:3, name:"Muscles McBoulder"}])
-
-                const emps=db.getEmployees()
-                expect(emps).toBeDefined()
-                expect(emps).toBeInstanceOf(Array)
+        test('Returns all instances of employee', done => {
+		db.getEmployees((err, data) => {
+			let emps = data
+			expect(emps).toBeDefined()
+			expect(emps).toBeInstanceOf(Array)
+			done()
+		})
         })
 
-        test.each([0,1,2,3])('Returns the instance of employee with id %d', (a)=>{
-                const emp=db.getEmployeeById(a)
-                expect(emp).toBeDefined()
-                expect(emp.id).toBeDefined()
-                expect(emp.name).toBeDefined()
+        test.each([0,1,2,3])('Returns the instance of employee with id %d', (a, done) => {
+		db.getEmployeeById(a, (err, data)=> {
+			let emp = data
+			expect(emp).toBeDefined()
+			expect(emp.id).toBeDefined()
+			expect(emp.name).toBeDefined()
+			done()
+		})
         })
 })
 
 describe('Timestamp DAO', () => {
-        db.getStamps=jest.fn(()=>[{id:0, in:true, time:9},
-                                  {id:0, in:false, time:11},
-                                  {id:0, in:true, time:13},
-                                  {id:1, in:true, time:8},
-                                  {id:1, in:false, time:11},
-                                  {id:1, in:true, time:13},
-                                  {id:2, in:true, time:9},
-                                  {id:2, in:false, time:12},
-                                  {id:3, in:true, time:8}])
-
-        test.each([[0,23],[8,11],[4,9]])('Returns all timestamps in the given interval %d to %d', (a,b)=>{
-                const stamps=db.getStampsInInterval(a,b);
-                expect(stamps).toBeDefined()
-                expect(stamps).toBeInstanceOf(Array)
+        test.each([[0,23],[8,11],[4,9]])('Returns all timestamps in the given interval %d to %d', (a, b, done) => {
+		db.getStampsInInterval(a, b, (err, data) => {
+			let stamps = data
+			expect(stamps).toBeDefined()
+			expect(stamps).toBeInstanceOf(Array)
+			done()
+		})
         })
-        test.each([0,1,2,3])('Returns all timestamps with id %d', (a)=>{
-                const stamps=db.getStampsById(a)
-                expect(stamps).toBeDefined()
-                expect(stamps).toBeInstanceOf(Array)
+        test.each([0,1,2,3])('Returns all timestamps with id %d', (a, done)=>{
+		db.getStampsById(a, (err, data) => {
+			let stamps = data
+			expect(stamps).toBeDefined()
+			expect(stamps).toBeInstanceOf(Array)
+			done()
+		})
         })
 })
 
