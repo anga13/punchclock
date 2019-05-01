@@ -6,8 +6,12 @@ const app = express()
 app.use(express.static('public'))
 
 app.get('/hours', (req, res) => {
-	let timeData = controller.getHours(from, to)
-	res.json(timeData)
+	if(!(req.query.from && req.query.to)){
+		res.status(400).json({error: 'Request need to pass query params from and to'})
+	} else {
+		let timeData = controller.getHours(req.query.from, req.query.to)
+		res.json(timeData)
+	}
 })
 .get('/today', (req, res) => {
 	let statsToday = controller.getTodaysStats()
