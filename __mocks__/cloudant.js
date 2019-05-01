@@ -1,43 +1,52 @@
 const cloudant = {
 	use(dbName) {
-		if (dbName === 'Employee' || dbName ==='Stamp') {
-			this.db = dbName
+		if (dbName === 'Employee') {
+			return employeeDB
+		} else if (dbName ==='Stamp') {
+			return stampDB
 		} else throw 'Invalid DB'
-	},
+	}
+}
 
+const employeeDB = {
 	get(arg0, arg1) {
 		let cb
 		let data
-		if (this.db === 'Employee') { 
-			if (arguments.length === 2) {
-				let id = arg0
-				cb = arg1
-				data = getEmployeeById(id)
-			} else {
-				cb = arg0
-				data = employeeData
-			}
-		} else if (this.db === 'Stamp') {
-			if (arguments.length === 2 && typeof arg === 'object') {
-				cb = arg1
-				let from = arg0.from
-				let to = arg0.to
-				data = getStampsInInterval(from, to)
-			} else if (arguments.length === 2 && typeof arg === 'number') {
-				cb = arg1
-				let id = arg0
-				data = getStampsById(id)
-			} else {
-				cb = arg0
-				data = stampData
-			}
+		if (arguments.length === 2) {
+			let id = arg0
+			cb = arg1
+			data = getEmployeeById(id)
+		} else {
+			cb = arg0
+			data = employeeData
 		}
-		cb(data)
+		cb(null, data)
+	}
+}
+
+const stampDB = {
+	get(arg0, arg1) {
+		let cb
+		let data
+		if (arguments.length === 2 && typeof arg0 === 'object') {
+			cb = arg1
+			let from = arg0.from
+			let to = arg0.to
+			data = getStampsInInterval(from, to)
+		} else if (arguments.length === 2 && typeof arg0 === 'number') {
+			cb = arg1
+			let id = arg0
+			data = getStampsById(id)
+		} else {
+			cb = arg0
+			data = stampData
+		}
+		cb(null, data)
 	}
 }
 
 const getEmployeeById = (id) => {
-	let found = employeeData.find(employee => employee.id === id )
+	let found = employeeData.find(employee => employee.id === id)
 	return found
 }
 
@@ -48,7 +57,7 @@ const getStampsInInterval = (from, to) => {
 }
 
 const getStampsById = (id) => {
-	let found = stampData.find(stamp => stamp.id === id)
+	let found = stampData.filter(stamp => stamp.id === id)
 	return found
 }
 
