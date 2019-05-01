@@ -1,10 +1,10 @@
-const controller = require('../controller')
+const controller = require('../../controller')
 
-let db = require('../db')
-let stats = require('../stats')
+let db = require('../../db')
+let stats = require('../../stats')
 
-jest.mock('../db')
-jest.mock('../stats')
+jest.mock('../../db')
+jest.mock('../../stats')
 
 describe('The getHours() function', () => {
 	test('stuff', () => {

@@ -1,4 +1,4 @@
-const stats = require('../stats')
+const stats = require('../../stats')
 
 describe('Stats module', () => {
 	test('Calculates the total time of given timestamps', () => {

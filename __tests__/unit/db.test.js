@@ -1,4 +1,4 @@
-const db = require('../db')
+const db = require('../../db')
 
 describe('Employee DAO', () => {
 	test.todo('Returns all instances of employee')
