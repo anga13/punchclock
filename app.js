@@ -18,9 +18,12 @@ app.get('/hours', (req, res) => {
 	res.json(statsToday)
 })
 .get('/employee/:id/stats', (req, res) => {
-	let personalStats = controller.getPersonalStats(req.params.id)
-	res.json(personalStats)
-
+	try {
+		let personalStats = controller.getPersonalStats(req.params.id)
+		res.json(personalStats)
+	} catch (e) {
+		res.status(404).json({error: e})
+	}
 })
 
 module.exports = app
