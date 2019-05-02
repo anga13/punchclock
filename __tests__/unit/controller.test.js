@@ -1,15 +1,12 @@
-const controller = require('../controller')
+const controller = require('../../controller')
 
-let db = require('../db')
-let stats = require('../stats')
-
-jest.mock('../db')
-jest.mock('../stats')
+let db = require('../../db')
+let stats = require('../../stats')
 
 describe('The getHours() function', () => {
 	test('stuff', () => {
-		db.getEmployeeTotalsInInterval.mockImplementation((from, to) => dbEmployees)
-		stats.calculateHours.mockImplementation(stamps => 9)
+		db.getEmployeeTotalsInInterval = jest.fn((from, to) => dbEmployees)
+		stats.calculateHours = jest.fn(stamps => 9)
 
 		let staff = controller.getHours('2010-10-20','2017-12-02')
 		let fred = staff[0]
@@ -57,3 +54,4 @@ const dbEmployees = [
 		}]
 	}
 ]
+
