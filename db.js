@@ -1,4 +1,8 @@
-const cloudant = require('cloudant')
+const cloudant = {
+	use(s){
+		return {get(a,b){}}
+	}
+}
 
 module.exports = {
 	getEmployees(cb) {
