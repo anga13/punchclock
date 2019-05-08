@@ -1,6 +1,11 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import App from "./app.js"
+import React from "react";
+import ReactDOM from "react-dom";
+import Main from "./Main";
 
-ReactDOM.render(<App />, document.getElementById("app"))
+// ===
+
+ReactDOM.render(
+  <Main aktiv={false}/>,
+  document.getElementById('app')
+);
 

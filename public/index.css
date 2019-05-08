@@ -1,0 +1,61 @@
+#root {
+  padding: 1em;
+}
+
+.all-view, single-view {
+  padding: 1em;
+}
+
+.employee { width: 300px; }
+.employees { width: 600px; }
+.employees, .employee {
+  display: table;
+  table-layout: auto;
+}
+
+.employees>ul, .employee>ul {
+  border-collapse: collapse;
+  list-style: none;
+  display: table-row;
+  width: 100%;
+  background: #FFFFFF;
+  color: #000000;
+  font-size: 1.1em;
+  font-weight: 900;
+}
+.employees>ul:hover {
+  color: #FFFFFF;
+  background: #000000;
+}
+
+
+
+.employees>ul>li, .employee>ul>li {
+  margin: 0;
+  padding: 0.4em 2em;
+  border-width: 1px;
+  border-color: #0F0F0F;
+  border-style: solid;
+  display: table-cell;
+  text-align: center;
+}
+
+
+button, input {
+  margin: 1em;
+  padding: 0.4em 0.6em;
+  border-width: 2px;
+  border-color: #000000;
+  border-style: solid;
+  font-size: 1.1em;
+  font-weight: 900;
+  color: #000000;
+  background: #FFFFFF;
+} button:hover {
+  color: #FFFFFF;
+  background: #000000;
+}
+input {
+  width: 100px;
+}
+
