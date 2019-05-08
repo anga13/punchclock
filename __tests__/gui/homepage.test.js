@@ -9,9 +9,8 @@ test('Startpage has app', async () => {
 	let el = await driver.findElement(By.id('app'))
 	let name = await el.getTagName()
 	expect(name).toBe('div')
-	await driver.quit()
 })
 
-afterAll(() => {
+afterAll(async () => {
 	driver.quit()
 })
