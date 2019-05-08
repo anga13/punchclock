@@ -11,3 +11,7 @@ test('Startpage has app', async () => {
 	expect(name).toBe('div')
 	await driver.quit()
 })
+
+afterAll(() => {
+	driver.quit()
+})
