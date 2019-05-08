@@ -1,8 +1,9 @@
-#root {
-  padding: 1em;
-}
+#app { padding: 1em; }
 
-.all-view, single-view {
+.all-view, .single-view {
+  display: block;
+  float: none;
+  margin: auto;
   padding: 1em;
 }
 
