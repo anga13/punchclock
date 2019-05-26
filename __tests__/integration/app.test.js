@@ -5,8 +5,9 @@ const controller = require('../../controller')
 
 jest.mock('../../controller')
 
-controller.getHours.mockImplementation((from,to) => {})
-controller.getPersonalStats.mockImplementation((id) => {
+controller.getTodaysStats.mockResolvedValue({})
+controller.getHours.mockResolvedValue({})
+controller.getPersonalStats.mockImplementation(async (id) => {
 	let id_nr = parseInt(id, 10)
 	if(id_nr > 3 || id_nr < 1) {
 		throw 'Not in DB'

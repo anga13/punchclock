@@ -5,25 +5,42 @@ const cloudant = {
 }
 
 module.exports = {
-	getEmployees(cb) {
-		let employeeDB = cloudant.use('Employee')
-		employeeDB.get(cb)
+	async getEmployees() {
+		return [...employees]
 	},
-	getEmployeeById(id, cb) {
-		let employeeDB = cloudant.use('Employee')
-		employeeDB.get(id, cb)
+	async getEmployeeById(id) {
+		const index = id
+		return employees[index]
 	},
-	getEmployeeTotalsInInterval(from, to, cb) {
-		let employeeDB = cloudant.use('Employee')
-		employeeDB.get({from, to}, cb)
+	async getEmployeeTotalsInInterval(from, to) {
+		let employees = [...employees]
+		return employees.map((empl, index) => {
+			empl.hours = totals[index]
+			return empl
+		})
+
 	},
-	getStampsInInterval(from, to, cb) {
-		let stampDB = cloudant.use('Stamp')
-		stampDB.get({from, to}, cb)
+	async getStampsInInterval(from, to) {
+		return [...totals]
 	},
-	getStampsById(id, cb) {
-		let stampDB = cloudant.use('Stamp')
-		stampDB.get(id, cb)
+	async getStampsById(id) {
+		return [...totals]
 	}
 }
 
+const totals = [8, 9, 44]
+const employees = [
+	{
+		id: 0,
+		name: 'Fred'
+	}, {
+		id: 1,
+		name: 'Barney'
+	}, {
+		id: 2,
+		name: 'Wilma'
+	}, {
+		id: 3,
+		name: 'Betty'
+	}
+]

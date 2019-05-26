@@ -9,21 +9,22 @@ app.get('/hours', (req, res) => {
 	if(!(req.query.from && req.query.to)){
 		res.status(400).json({error: 'Request need to pass query params from and to'})
 	} else {
-		let timeData = controller.getHours(req.query.from, req.query.to)
-		res.json(timeData)
+		controller.getHours(req.query.from, req.query.to).then(timeData => {
+			res.json(timeData)
+		})
 	}
 })
 .get('/today', (req, res) => {
-	let statsToday = controller.getTodaysStats()
-	res.json(statsToday)
+	controller.getTodaysStats().then(statsToday => { 
+		res.json(statsToday)
+	})
 })
 .get('/employee/:id/stats', (req, res) => {
-	try {
-		let personalStats = controller.getPersonalStats(req.params.id)
+	controller.getPersonalStats(req.params.id).then(personalStats => { 
 		res.json(personalStats)
-	} catch (e) {
+	}).catch(e => {
 		res.status(404).json({error: e})
-	}
+	})
 })
 
 module.exports = app

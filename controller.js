@@ -2,14 +2,14 @@ const stats = require('./stats')
 const db = require('./db')
 
 module.exports = {	
-	getHours(from, to) {
-		let employees = db.getEmployeeTotalsInInterval(from, to)
+	async getHours(from, to) {
+		let employees = await db.getEmployeeTotalsInInterval(from, to)
 		employees.forEach((employee) => {
 			employee.hours = stats.calculateHours(employee.stamps)
 			
 		})
 		return employees
 	},
-	getTodaysStats() {},
-	getPersonalStats(id) {}
+	async getTodaysStats() {},
+	async getPersonalStats(id) {}
 }
