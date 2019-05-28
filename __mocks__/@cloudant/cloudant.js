@@ -1,26 +1,19 @@
 const cloudant = {
 	use(dbName) {
-		if (dbName === 'Employee') {
+		if (dbName === 'employees') {
 			return employeeDB
-		} else if (dbName ==='Stamp') {
+		} else if (dbName ==='stamps') {
 			return stampDB
 		} else throw 'Invalid DB'
 	}
 }
 
 const employeeDB = {
-	get(arg0, arg1) {
-		let cb
-		let data
-		if (arguments.length === 2) {
-			let id = arg0
-			cb = arg1
-			data = getEmployeeById(id)
-		} else {
-			cb = arg0
-			data = employeeData
-		}
-		cb(null, data)
+	async get(id) {
+		return employeeData[id]
+	},
+	async list() {
+		return employeeData
 	}
 }
 
@@ -81,5 +74,4 @@ const stampData = [
 	{id:3, in:true, time:8}
 ]
 
-module.exports = cloudant
-
+module.exports = (data) => cloudant

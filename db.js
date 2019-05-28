@@ -1,19 +1,26 @@
-const cloudant = {
-	use(s){
-		return {get(a,b){}}
-	}
-}
+require('dotenv').config()
+
+const Cloudant = require('@cloudant/cloudant')
+
+const password = process.env.cloudant_password
+const account = process.env.cloudant_username
+
+const cloudant = Cloudant({account, password})
+
 
 module.exports = {
 	async getEmployees() {
-		return [...employees]
+		const db = cloudant.use('employees')
+		return db.list()
 	},
 	async getEmployeeById(id) {
-		const index = id
-		return employees[index]
+		const db = cloudant.use('employees')
+		return db.get(id)
 	},
 	async getEmployeeTotalsInInterval(from, to) {
-		let employees = [...employees]
+		const employeeDb = cloudant.use('employees')
+		const stampDb = cloudant.use('stamps')
+		let [employees, totals] = await Promise.all(employeeDb.list(), stampDb.list())
 		return employees.map((empl, index) => {
 			empl.hours = totals[index]
 			return empl
