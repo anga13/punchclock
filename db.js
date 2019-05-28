@@ -36,18 +36,3 @@ module.exports = {
 }
 
 const totals = [8, 9, 44]
-const employees = [
-	{
-		id: 0,
-		name: 'Fred'
-	}, {
-		id: 1,
-		name: 'Barney'
-	}, {
-		id: 2,
-		name: 'Wilma'
-	}, {
-		id: 3,
-		name: 'Betty'
-	}
-]
