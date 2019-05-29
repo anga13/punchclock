@@ -1,7 +1,6 @@
 const stats = require('./stats')
 const db = require('./db')
 
-
 module.exports = {	
 	getHours(from, to) {
 		let employees = db.getEmployeeTotalsInInterval(from, to)
