@@ -20,7 +20,7 @@ module.exports = {
 	async getEmployeeTotalsInInterval(from, to) {
 		const employeeDb = cloudant.use('employees')
 		const stampDb = cloudant.use('stamps')
-		let [employees, totals] = await Promise.all(employeeDb.list(), stampDb.list())
+		let [employees, totals] = await Promise.all([employeeDb.list(), stampDb.list()])
 		return employees.map((empl, index) => {
 			empl.hours = totals[index]
 			return empl

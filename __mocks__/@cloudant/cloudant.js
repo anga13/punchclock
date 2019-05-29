@@ -18,23 +18,8 @@ const employeeDB = {
 }
 
 const stampDB = {
-	get(arg0, arg1) {
-		let cb
-		let data
-		if (arguments.length === 2 && typeof arg0 === 'object') {
-			cb = arg1
-			let from = arg0.from
-			let to = arg0.to
-			data = getStampsInInterval(from, to)
-		} else if (arguments.length === 2 && typeof arg0 === 'number') {
-			cb = arg1
-			let id = arg0
-			data = getStampsById(id)
-		} else {
-			cb = arg0
-			data = stampData
-		}
-		cb(null, data)
+	async list() {
+		return stampData
 	}
 }
 
