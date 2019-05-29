@@ -9,7 +9,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node_modules/.bin/jest"
+    "build": "webpack -p",
+    "test:unit": "node_modules/.bin/jest unit",
+    "test:integration": "node_modules/.bin/jest integration",
+    "test:gui": "node_modules/.bin/jest gui",
+    "test": "npm run test:unit && npm run test:integration"
   },
   "repository": {
     "type": "git",
