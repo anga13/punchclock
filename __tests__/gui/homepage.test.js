@@ -4,13 +4,21 @@ const driver = new Builder()
 	.forBrowser('chrome')
 	.build()
 
-test('Startpage has app', async () => {
+test('Startpage has app element', async () => {
 	driver.get('localhost:8080')
-	let el = await driver.findElement(By.id('app'))
-	let name = await el.getTagName()
-	expect(name).toBe('div')
+	await expect(driver.findElement(By.id('app'))
+		.getTagName()).resolves.toBe('div')
+})
+
+test('/today page lists all employees', async () => {
+	driver.get('localhost:8080/today')
+	const elements = await driver.findElement(By.id('app'))
+		.findElements(By.className('employee'))
+	expect(elements).toHaveLength(3)
+		
 })
 
 afterAll(async () => {
 	driver.quit()
 })
+
