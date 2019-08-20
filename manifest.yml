@@ -1,4 +1,4 @@
 applications:
 - name: punchclock
-memory: 64M
+memory: 128M
 
