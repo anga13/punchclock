@@ -1,5 +1,12 @@
 const db = require('../../db')
+const cfenv = require('cfenv')
+jest.mock('@cloudant/cloudant')
 
+cfenv.getAppEnv = jest.fn()
+cfenv.getAppEnv.mockReturnValue({services: {cloudantNoSQLDB: [
+	{
+		credentials: '1'
+	}]}})
 describe('Employee DAO', () => {
 	test('Returns all instances of employee', async () => {
 		let emps = await db.getEmployees()
