@@ -1,4 +1,6 @@
 const db = require('../../db')
+jest.mock('cfenv')
+jest.mock('@cloudant/cloudant')
 
 describe('Employee DAO', () => {
 	test('Returns all instances of employee', async () => {
