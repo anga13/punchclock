@@ -1,14 +1,15 @@
 const controller = require('../../controller')
+const db = require('../../db')
 
-let db = require('../../db')
+jest.mock('../../db')
 let stats = require('../../stats')
 
 describe('The getHours() function', () => {
-	test('stuff', () => {
-		db.getEmployeeTotalsInInterval = jest.fn((from, to) => dbEmployees)
+	test('stuff', async () => {
+		db.getEmployeeTotalsInInterval = jest.fn().mockResolvedValue(dbEmployees)
 		stats.calculateHours = jest.fn(stamps => 9)
 
-		let staff = controller.getHours('2010-10-20','2017-12-02')
+		let staff = await controller.getHours('2010-10-20','2017-12-02')
 		let fred = staff[0]
 		let barney = staff[1]
 		expect(staff.length).toBe(2)

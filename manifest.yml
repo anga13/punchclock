@@ -1,0 +1,5 @@
+applications:
+- name: punchclock
+  memory: 128M
+  services:
+  - couchy

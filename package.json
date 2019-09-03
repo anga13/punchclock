@@ -9,7 +9,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node_modules/.bin/jest"
+    "build": "webpack -p",
+    "test:unit": "node_modules/.bin/jest unit --coverage",
+    "test:integration": "node_modules/.bin/jest integration",
+    "test:gui": "node_modules/.bin/jest gui",
+    "test": "npm run test:unit && npm run test:integration"
   },
   "repository": {
     "type": "git",
@@ -28,10 +32,24 @@
   },
   "homepage": "https://github.com/anga13/punchclock#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "@cloudant/cloudant": "^4.1.0",
+    "cfenv": "^1.2.2",
+    "express": "^4.16.4",
+    "pino": "^5.13.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
     "jest": "^24.7.1",
-    "supertest": "^4.0.2"
+    "jest-junit": "^8.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "selenium-webdriver": "^4.0.0-alpha.1",
+    "supertest": "^4.0.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.2"
   }
 }
