@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "build": "webpack -p",
-    "test:unit": "node_modules/.bin/jest unit",
+    "test:unit": "node_modules/.bin/jest unit --coverage",
     "test:integration": "node_modules/.bin/jest integration",
     "test:gui": "node_modules/.bin/jest gui",
     "test": "npm run test:unit && npm run test:integration"
@@ -44,6 +44,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "jest": "^24.7.1",
+    "jest-junit": "^8.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "selenium-webdriver": "^4.0.0-alpha.1",
