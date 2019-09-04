@@ -1,7 +1,9 @@
 const {Builder, By} = require('selenium-webdriver')
+const firefox = require('selenium-webdriver/firefox')
 
 const driver = new Builder()
-	.forBrowser('chrome')
+	.forBrowser('firefox')
+	.setFirefoxOptions(new firefox.Options().headless())
 	.build()
 
 test('Startpage has app element', async () => {
